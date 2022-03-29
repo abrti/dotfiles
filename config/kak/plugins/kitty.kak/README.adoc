@@ -1,0 +1,16 @@
+= kitty.kak
+Parasrah <git@parasrah.com>
+
+A plugin to enhance the existing `kitty` integration
+
+== Changes
+
+Adds command `kitty-overlay` which allows running a process as an overlay over the current window.
+
+Also ensures that all `kitty` commands are scoped to the current `kakoune` client
+
+== Requirements
+
+* `kitty 0.17.3` or greater
+* `listen_on` configured in `kitty.conf`
+* `allow_remote_control yes` in `kitty.conf`

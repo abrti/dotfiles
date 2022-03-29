@@ -1,0 +1,49 @@
+provide-module -override kitty %§
+
+declare-option -docstring %{window type that kitty creates on new and repl calls (kitty|os)} str kitty_window_type kitty
+
+define-command kitty-terminal -params 1.. -shell-completion -docstring '
+kitty-terminal <program> [<arguments>]: create a new terminal as a kitty window
+The program passed as argument will be executed in the new terminal' \
+%{
+    nop %sh{
+        kitty @ --to=$kak_client_env_KITTY_LISTEN_ON new-window --no-response --window-type $kak_opt_kitty_window_type --cwd "$PWD" "$@"
+    }
+}
+
+define-command kitty-overlay -params 1.. -shell-completion -docstring '
+kitty-overlay <program> [<arguments>]: create a new terminal as a kitty overlay
+The program passed as argument will be executed in the new terminal' \
+%{
+    nop %sh{
+        kitty @ --to=$kak_client_env_KITTY_LISTEN_ON launch --type overlay --cwd "$PWD" "$@"
+    }
+}
+
+
+define-command kitty-terminal-tab -params 1.. -shell-completion -docstring '
+kitty-terminal-tab <program> [<arguments>]: create a new terminal as kitty tab
+The program passed as argument will be executed in the new terminal' \
+%{
+    nop %sh{
+        kitty @ --to=$kak_client_env_KITTY_LISTEN_ON new-window --no-response --new-tab --cwd "$PWD" "$@"
+    }
+}
+
+define-command kitty-focus -params ..1 -client-completion -docstring '
+kitty-focus [<client>]: focus the given client
+If no client is passed then the current one is used' \
+%{
+    evaluate-commands %sh{
+        if [ $# -eq 1 ]; then
+            printf "evaluate-commands -client '%s' focus" "$1"
+        else
+            kitty @ --to=$kak_client_env_KITTY_LISTEN_ON focus-tab --no-response -m=id:$kak_client_env_KITTY_WINDOW_ID
+            kitty @ --to=$kak_client_env_KITTY_LISTEN_ON focus-window --no-response -m=id:$kak_client_env_KITTY_WINDOW_ID
+        fi
+    }
+}
+
+alias global focus kitty-focus
+
+§

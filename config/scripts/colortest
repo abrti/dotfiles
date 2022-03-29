@@ -1,0 +1,8 @@
+#!/bin/sh
+
+for i in $(seq 30 37) $(seq 40 48); do
+  for j in $(seq 0 9); do
+    printf "\x1b[${j};${i}m\\\x1b[${j};${i}m\x1b[0m "
+	      done
+  printf '\n'
+done
