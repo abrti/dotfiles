@@ -7,7 +7,7 @@ function fish_prompt
     else
         set_color red
     end
-    printf '┃ %s%s%s > ' \
+    printf '█ %s%s%s > ' \
     	(set_color cyan) (prompt_pwd) (set_color normal)
 end
 
