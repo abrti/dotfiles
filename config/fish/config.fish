@@ -14,4 +14,5 @@ end
 # MISC ──────────────────────────────────────────────────────────────
 set fish_greeting
 set PATH "$PATH:$HOME/.config/scripts"
+set fish_color_valid_path
 alias "hx" "helix"
