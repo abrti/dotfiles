@@ -7,7 +7,7 @@ function fish_prompt
     else
         set_color red
     end
-    printf '\u23fd %s%s%s \uf0da' \
+    printf '\u23fd %s%s%s \uf0da ' \
     	(set_color cyan) (prompt_pwd) (set_color normal)
 end
 
