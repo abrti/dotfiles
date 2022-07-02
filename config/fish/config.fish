@@ -15,7 +15,6 @@ end
 set fish_greeting
 set PATH "$PATH:$HOME/.config/scripts"
 set fish_color_valid_path
-alias 'mkbuild' 'printf "#!/bin/sh\nCC=\'clang\'\nARGS=\'-Wall -Wextra -pedantic -xc --std=c99\'" > build.sh && chmod +x build.sh'
 alias 'hx' 'helix'
 alias 'll' 'exa -la'
 alias 'la' 'exa -a'
